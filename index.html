@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>EverWing-Hacks Extension</title>
+		<link rel="stylesheet" type="text/css" href="style.css">
+		<script type="text/javascript" src="bowser.min.js"></script>
+
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="centroid">
+			<div class="title">♥♥♥♥</div>
+			<div class="terminal">
+				EverWing-Hacks v2.0.0 by dinodevs # <script type="text/javascript">document.write(new Date().toGMTString().replace(',', ''));</script> <script type="text/javascript">document.write(bowser.osname + ' ' + bowser.osversion);</script><br>
+				<br>
+				This extension is intended to be used ONLY for educational purposes. It was created to show how easy it is to cheat on a popular game just by running some simple commands on the browser's console.<br>
+				<br>
+				This software comes with ABSOLUTELY NO WARRANTY. By using it your account may and should get banned for cheating.<br>
+				Last login: <script type="text/javascript">document.write(new Date().toGMTString().replace(',', ''));</script> from <script type="text/javascript">document.write(bowser.name + ' ' + bowser.version);</script><br>
+				<span class="command">root@localhack</span> <span class="dir">~ #</span> <span class="cursor">_</span>
+			</div>
+			<div class="downloads">
+				<a class="button disabled" href="#" id="download-button">EverWing-Hacks v2.0.0<br><span id="browser-info">booting ...</span></a>
+				<script type="text/javascript">
+					(function(){
+						// Get elements
+						var button = document.getElementById("download-button");
+						var info = document.getElementById("browser-info");
+						// Check support
+						if (bowser.firefox) {
+							button.href = '#test';
+							button.className = 'button';
+							info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
+						}
+						else {
+							info.textContent = bowser.name + ' ' + bowser.version + ' is not yet supported';
+						}
+					})();
+				</script>
+			</div>
+		</div>
+		<div class="footer">
+			<div style="padding-right: 11px;">&copy; <script type="text/javascript">document.write(new Date().getYear() + 1900);</script> DinoDevs.</div>
+			<div class="created-by"><a><span class="var hide-me">var</span> created<span class="hide-me">_</span>by<span class="equal hide-me">=</span><span class="string">"DinoDevs"</span><span class="hide-me">;</span></a></div>
+		</div>
+	</body>
+</html>
