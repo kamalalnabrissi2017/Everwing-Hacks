@@ -12,6 +12,7 @@ var version = "v2.0.0";
 	var links = {};
 	links.base = 'https://github.com/DinoDevs/Everwing-Hacks/',
 	links.xpi = links.base + 'releases/download/' + version + '/EverWingHacks.' + version + '.xpi';
+	links.chromeStore = 'https://chrome.google.com/webstore/detail/everwing-hacks/fbingkbgnhkfpmffjiekekmedohpmfef';
 	// Get elements
 	var button = document.getElementById("download-button");
 	var info = document.getElementById("browser-info");
@@ -22,12 +23,10 @@ var version = "v2.0.0";
 		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
 	}
 	else if (bowser.chrome) {
-		button.href = '#install';
+		button.href = links.chromeStore;
+		button.setAttribute('target', '_blank');
 		button.className = 'button';
 		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
-		button.addEventListener('click', function(){
-			chrome.webstore.install()
-		}, false);
 	}
 	else {
 		info.textContent = bowser.name + ' ' + bowser.version + ' is not yet supported';
