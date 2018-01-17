@@ -21,6 +21,14 @@ var version = "v2.0.0";
 		button.className = 'button';
 		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
 	}
+	else if (bowser.chrome) {
+		button.href = '#install';
+		button.className = 'button';
+		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
+		button.addEventListener('click', function(){
+			chrome.webstore.install()
+		}, false);
+	}
 	else {
 		info.textContent = bowser.name + ' ' + bowser.version + ' is not yet supported';
 	}
