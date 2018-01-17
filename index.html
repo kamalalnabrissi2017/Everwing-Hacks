@@ -12,18 +12,10 @@
 		<![endif]-->
 	</head>
 	<body>
-		<div class="centroid">
-			<div class="title">♥♥♥♥</div>
-			<div class="terminal">
-				EverWing-Hacks v2.0.0 by dinodevs # <script type="text/javascript">document.write(new Date().toGMTString().replace(',', ''));</script> <script type="text/javascript">document.write(bowser.osname + ' ' + bowser.osversion);</script><br>
-				<br>
-				This extension is intended to be used ONLY for educational purposes. It was created to show how easy it is to cheat on a popular game just by running some simple commands on the browser's console.<br>
-				<br>
-				This software comes with ABSOLUTELY NO WARRANTY. By using it your account may and should get banned for cheating.<br>
-				Last login: <script type="text/javascript">document.write(new Date().toGMTString().replace(',', ''));</script> from <script type="text/javascript">document.write(bowser.name + ' ' + bowser.version);</script><br>
-				<span class="command">root@localhack</span> <span class="dir">~ #</span> <span class="cursor">_</span>
-			</div>
-			<div class="downloads">
+		<div class="centroid" id="screen">
+			<div class="title" id="title" style="height:42px;"></div>
+			<div class="terminal" id="terminal" style="height:180px;"></div>
+			<div class="downloads" style="opacity: 0;transition: opacity 4s;" id="downloads">
 				<a class="button disabled" href="#" id="download-button">EverWing-Hacks v2.0.0<br><span id="browser-info">booting ...</span></a>
 				<script type="text/javascript">
 					(function(){
@@ -43,9 +35,119 @@
 				</script>
 			</div>
 		</div>
-		<div class="footer">
+		<div class="footer" style="opacity: 0;transition: opacity 4s;" id="footer">
 			<div style="padding-right: 11px;">&copy; <script type="text/javascript">document.write(new Date().getYear() + 1900);</script> DinoDevs.</div>
 			<div class="created-by"><a><span class="var hide-me">var</span> created<span class="hide-me">_</span>by<span class="equal hide-me">=</span><span class="string">"DinoDevs"</span><span class="hide-me">;</span></a></div>
 		</div>
+		<script type="text/javascript">
+			(function(){
+				// Create typer
+				var typping = function(t){
+					if (t.track.group >= t.code.length){
+						setTimeout(function(){
+							t.callback(t);
+						}, 0);
+						return;
+					}
+					else if (t.track.index == -1) {
+						t.track.index = 0;
+						switch(t.code[t.track.group].type) {
+							case 'text':
+								t.stack.push(document.createElement('span'));
+								t.stack[t.stack.length - 2].appendChild(t.stack[t.stack.length - 1]);
+								typping(t);
+								return;
+
+							case 'br':
+								t.stack[t.stack.length - 1].appendChild(document.createElement('br'));
+								t.track.index = -1;
+								t.track.group++;
+								break;
+
+							case 'command':
+								t.stack.push(document.createElement('span'));
+								t.stack[t.stack.length - 1].className = "command";
+								t.stack[t.stack.length - 2].appendChild(t.stack[t.stack.length - 1]);
+								typping(t);
+								return;
+
+							case 'dir':
+								t.stack.push(document.createElement('span'));
+								t.stack[t.stack.length - 1].className = "dir";
+								t.stack[t.stack.length - 2].appendChild(t.stack[t.stack.length - 1]);
+								typping(t);
+								return;
+
+							case 'cursor':
+								t.stack.push(document.createElement('span'));
+								t.stack[t.stack.length - 1].className = "cursor";
+								t.stack[t.stack.length - 2].appendChild(t.stack[t.stack.length - 1]);
+								typping(t);
+								return;
+						}
+					}
+					else if(t.code[t.track.group].hasOwnProperty('text') && t.track.index < t.code[t.track.group].text.length){
+						t.stack[t.stack.length - 1].appendChild(document.createTextNode(t.code[t.track.group].text[t.track.index]));
+						t.track.index++;
+					}
+					else {
+						t.stack.pop();
+						t.track.group++;
+						t.track.index = -1;
+						typping(t);
+						return;
+					}
+					setTimeout(function(){
+						typping(t);
+					}, t.wait);
+				};
+
+				var typeHearts = function(callback){
+					typping({
+						"code" : [{type:'text', text: '♥♥♥♥'}],
+						"wait" : 500,
+						"track" : {group: 0, index: -1},
+						"stack" : [document.getElementById('title')],
+						"callback" : callback || function(){}
+					});
+				};
+
+				var typeTerminal = function(callback){
+					typping({
+						"code" : (function(){
+							// Define code
+							var code = [
+								'EverWing-Hacks v2.0.0 by dinodevs # ' + (new Date().toGMTString().replace(',', '')) + ' ' + bowser.osname + ' ' + bowser.osversion, {type:'br'},
+								{type:"br"},
+								'This extension is intended to be used ONLY for educational purposes. It was created to show how easy it is to cheat on a popular game just by running some simple commands on the browser\'s console.', {type:'br'},
+								{type:'br'},
+								'This software comes with ABSOLUTELY NO WARRANTY. By using it your account may and should get banned for cheating.', {type:'br'},
+								{type:'br'},
+								'Last login: ' + (new Date().toGMTString().replace(',', '')) + ' from ' + bowser.name + ' ' + bowser.version, {type:'br'},
+								{type:'command', text:'root@localhack'}, ' ', {type:'dir', text:'~ #'}, ' ', {type:'cursor', text:'_'}
+							];
+							for (var i = 0; i < code.length; i++) {
+								if (typeof code[i] === 'string') {
+									code[i] = {type: 'text', text: code[i]};
+								}
+							}
+							return code;
+						})(),
+						"wait" : 10,
+						"track" : {group: 0, index: -1},
+						"stack" : [document.getElementById('terminal')],
+						"callback" : callback || function(){}
+					});
+				};
+
+				setTimeout(function(){
+					typeHearts(function(){
+						typeTerminal();
+						document.getElementById('downloads').style.opacity = 1;
+						document.getElementById('footer').style.opacity = 1;
+					});
+				}, 500);
+			})();
+		</script>
 	</body>
 </html>
