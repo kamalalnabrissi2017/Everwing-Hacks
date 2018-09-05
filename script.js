@@ -4,7 +4,7 @@
  * All rights reserved.
  */
 	
-var version = "v2.0.0";
+var version = "v2.1.1";
 
 // Downloads function
 (function(){
