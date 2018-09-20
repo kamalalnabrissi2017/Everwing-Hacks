@@ -4,26 +4,36 @@
  * All rights reserved.
  */
 	
-var version = "v2.1.1";
+var version = "v2.1.5";
 
 // Downloads function
 (function(){
 	// Links
 	var links = {};
 	links.base = 'https://github.com/DinoDevs/Everwing-Hacks/',
+	links.crx = links.base + 'releases/download/' + version + '/EverWingHacks.' + version + '.crx';
 	links.xpi = links.base + 'releases/download/' + version + '/EverWingHacks.' + version + '.xpi';
-	links.chromeStore = 'https://chrome.google.com/webstore/detail/everwing-hacks/fbingkbgnhkfpmffjiekekmedohpmfef';
+	links.nex = links.base + 'releases/download/' + version + '/EverWingHacks.' + version + '.nex';
+	//links.chromeStore = 'https://chrome.google.com/webstore/detail/everwing-hacks/fbingkbgnhkfpmffjiekekmedohpmfef';
+	
 	// Get elements
 	var button = document.getElementById("download-button");
 	var info = document.getElementById("browser-info");
+	
 	// Check support
 	if (bowser.firefox) {
 		button.href = links.xpi;
 		button.className = 'button';
 		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
 	}
-	else if (bowser.chrome) {
-		button.href = links.chromeStore;
+	else if (bowser.chrome || bowser.chromium) {
+		button.href = links.crx;
+		button.setAttribute('target', '_blank');
+		button.className = 'button';
+		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
+	}
+	else if (bowser.opera) {
+		button.href = links.nex;
 		button.setAttribute('target', '_blank');
 		button.className = 'button';
 		info.textContent = 'for ' + bowser.name + ' ' + bowser.version;
@@ -100,7 +110,7 @@ var version = "v2.1.1";
 	var typeHearts = function(callback){
 		typping({
 			"code" : [{type:'text', text: '♥♥♥♥'}],
-			"wait" : 500,
+			"wait" : 250,
 			"track" : {group: 0, index: -1},
 			"stack" : [document.getElementById('title')],
 			"callback" : callback || function(){}
