@@ -2,7 +2,8 @@
 	"addons": {
 		"{1db275f8-435f-4ba0-80c0-5dd08063726c}": {
 			"updates": [
-				{"version": "2.2.2", "update_link": "https://github.com/DinoDevs/Everwing-Hacks/releases/download/v2.2.2/EverWingHacks.v2.2.2.xpi"}
+				{"version": "2.2.2", "update_link": "https://github.com/DinoDevs/Everwing-Hacks/releases/download/v2.2.2/EverWingHacks.v2.2.2.xpi"},
+				{"version": "2.2.3", "update_link": "https://github.com/DinoDevs/Everwing-Hacks/releases/download/v2.2.3/EverWingHacks.v2.2.3.xpi"}
 			]
 		}
 	}
