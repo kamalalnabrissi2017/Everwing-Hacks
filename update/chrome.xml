@@ -2,5 +2,6 @@
 <gupdate xmlns='http://www.google.com/update2/response' protocol='2.0'>
 	<app appid='ccjnkjokocffpindbdkadmebdldmnlji'>
 		<updatecheck codebase='https://github.com/DinoDevs/Everwing-Hacks/releases/download/v2.2.2/EverWingHacks.v2.2.2.crx' version='2.2.2'/>
+		<updatecheck codebase='https://github.com/DinoDevs/Everwing-Hacks/releases/download/v2.2.3/EverWingHacks.v2.2.3.crx' version='2.2.3'/>
 	</app>
 </gupdate>
